@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Crear Usuario</title>
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="style.css">
+	 <script src="mostrarUsers.js"></script>
 </head>
 </head>
 <body>
@@ -21,23 +23,75 @@
 		Apellidos:
 	</div>
 	<div class="col-sm-6">
-		<input type="text" name="apellidos"><br>
+		<input type="text"name="apellidos"><br>
 	</div>
 	<div class="col-sm-6">
 		Fecha de Nacimiento: 
 		</div>
 		<div class="col-sm-6">
-	<input type="date" name="dateNac"><br>
+	<input type="date" name="dateNac"id = "dateNac" ><br>
 	</div>
 	<div class="col-sm-6">
 		Sueldo:
 	</div>
 		<div class="col-sm-6">
-		<input type="number" name="sueldo"><br>
+		<input type="number" name="sueldo" min=0><br>
 	</div>
-	
+	<br><br>
+  <input type="submit" value="Guardar" >
 	</form>
 	<div>
 <div>
+		<script>
+			document.getElementById("dateNac").addEventListener("click", function(){
+				alert("")
+
+			var dateNac = document.getElementsByName("dateNac").value;
+			var today = newDate();
+			if ( dateNac >= today) {
+				alert("Fecha de Nacimiento debe ser mayor")
+			}
+		});	
+			</script>
+	<script>
+		function genera_tabla() {
+			var nombres = document.getElementsByName("nombre").value
+			var apellidos = document.getElementsByName("apellidos").value
+			var dateNac = document.getElementsByName("dateNac").value
+			var sueldo = document.getElementsByName("sueldo").value
+			// Obtener la referencia del elemento body
+			var body = document.getElementsByTagName("body")[0];
+		   
+			// Crea un elemento <table> y un elemento <tbody>
+			var tabla   = document.createElement("table");
+			var tblBody = document.createElement("tbody");
+		   
+			// Crea las celdas
+			for (var i = 0; i < 2; i++) {
+			  // Crea las hileras de la tabla
+			  var hilera = document.createElement("tr");
+		   
+			  for (var j = 0; j < 2; j++) {
+				// Crea un elemento <td> y un nodo de texto, haz que el nodo de
+				// texto sea el contenido de <td>, ubica el elemento <td> al final
+				// de la hilera de la tabla
+				var celda = document.createElement("td");
+				var textoCelda = document.createTextNode("Nombres");
+				celda.appendChild(textoCelda);
+				hilera.appendChild(celda);
+			  }
+		   
+			  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+			  tblBody.appendChild(hilera);
+			}
+		   
+			// posiciona el <tbody> debajo del elemento <table>
+			tabla.appendChild(tblBody);
+			// appends <table> into <body>
+			body.appendChild(tabla);
+			// modifica el atributo "border" de la tabla y lo fija a "2";
+			tabla.setAttribute("border", "2");
+		  }
+		</script>
 </body>
 </html>
